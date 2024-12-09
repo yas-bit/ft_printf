@@ -4,17 +4,17 @@ NAME	=	libftprintf.a
 OBJ		=	$(SRC:.c=.o)
 AR		=	ar rc
 RM		=	rm -f
-SRC		=	ft_putchar.c\
-			ft_putnbr.c\
-			ft_putnbr_un.c\
-			ft_putnbr_base.c\
-			ft_putstr.c\
+SRC		=	functions/ft_putchar.c\
+			functions/ft_putnbr.c\
+			functions/ft_putnbr_un.c\
+			functions/ft_putnbr_base.c\
+			functions/ft_putstr.c\
 			ft_printf.c\
 
 all:	$(NAME)
 
 %.o:	%.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(FLAGS) $< -o $@
 
 $(NAME):	$(OBJ)
 	$(AR) $(NAME) $(OBJ)

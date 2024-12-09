@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// Absolutely not my proudest
+
 #include "ft_printf.h"
 
 int	minprintf(va_list ap, const char *ptr)
@@ -60,3 +62,4 @@ int	ft_printf(const char *ptr, ...)
 	va_end(ap);
 	return (count);
 }
+

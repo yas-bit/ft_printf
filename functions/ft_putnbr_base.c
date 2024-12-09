@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_un.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yraiss <yraiss@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 17:59:57 by yraiss            #+#    #+#             */
-/*   Updated: 2022/11/06 16:28:00 by yraiss           ###   ########.fr       */
+/*   Created: 2022/10/27 18:39:47 by yraiss            #+#    #+#             */
+/*   Updated: 2022/11/06 16:24:59 by yraiss           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-int	ft_putnbr_un(unsigned int num)
+int	ft_putnbr_base(unsigned long n, int i)
 {
-	int	c;
+	int		c;
+	char	*base;	
 
 	c = 1;
-	if (num < 10)
-		ft_putchar(num + 48);
-	else if (num >= 10)
+	if (i)
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
+	if (n == 0)
 	{
-		c += ft_putnbr_un(num / 10);
-		ft_putnbr_un(num % 10);
+		ft_putchar(base[0]);
+		return (1);
+	}
+	if (n < 16)
+		ft_putchar(base[n % 16]);
+	else
+	{
+		c += ft_putnbr_base(n / 16, i);
+		ft_putnbr_base(n % 16, i);
 	}
 	return (c);
 }

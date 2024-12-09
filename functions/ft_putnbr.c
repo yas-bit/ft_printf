@@ -1,51 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yraiss <yraiss@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 18:39:47 by yraiss            #+#    #+#             */
-/*   Updated: 2022/11/06 16:24:59 by yraiss           ###   ########.fr       */
+/*   Created: 2022/10/27 13:13:19 by yraiss            #+#    #+#             */
+/*   Updated: 2022/11/06 16:26:21 by yraiss           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-static int	count(unsigned long n)
+int	ft_putnbr(int num)
 {
-	int	i;
+	long long	n;
+	int			c;
 
-	i = 0;
-	while (n > 0)
-	{
-		n = n / 16;
-		i++;
-	}
-	return (i);
-}
-
-int	ft_putnbr_base(unsigned long n, int i)
-{
-	int		c;
-	char	*base;	
-
+	n = (long long) num;
 	c = 1;
-	if (i)
-		base = "0123456789abcdef";
-	else
-		base = "0123456789ABCDEF";
-	if (n == 0)
+	if (n < 0)
 	{
-		ft_putchar(base[0]);
-		return (1);
+		n = -n;
+		c += ft_putchar('-');
 	}
-	if (n < 16)
-		ft_putchar(base[n % 16]);
-	else
+	if (n < 10)
+		ft_putchar(n + 48);
+	else if (n >= 10)
 	{
-		c += ft_putnbr_base(n / 16, i);
-		ft_putnbr_base(n % 16, i);
+		c += ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
 	}
 	return (c);
 }
